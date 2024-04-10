@@ -39,10 +39,18 @@ let verifiedPayload; // DO NOT MODIFY! Re-assign the verifiedPayload variable be
 
 // (Optional) Bonus: Catch Error With Invalid Signature
 // Generate an alternate secret key and use it
+const alternateKey = require('crypto').randomBytes(64).toString('hex')
 //    To "try" to get the payload using jwt.verify
 //    Then "catch" the error and log it to the console.
 
 // Your code here
+try {
+    jwt.verify(token,alternateKey)
+
+}catch (error) {
+    console.error('Invalid Signature')
+}
+
 
 // (Optional) Bonus: Catch Error With Expired Token
 // First, set the token's expiration (above) to 1 second
@@ -51,3 +59,10 @@ let verifiedPayload; // DO NOT MODIFY! Re-assign the verifiedPayload variable be
 //    Then "catch" the error and log it to the console
 
 // Your code here
+setTimeout(()=> {
+    try {
+        verifiedPayload
+    }catch (error) {
+        console.error(error)
+    }
+}, 3000)
